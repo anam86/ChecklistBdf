@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FACILITY</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background-color: #0a0033;
+      padding: 0 50px;
+    }
+
+    .wrapper {
+      max-width: 630px;
+      width: 100%;
+      background: #fff;
+      margin: 20px auto;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.125);
+      padding: 30px;
+    }
+
+    .wrapper .title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: #0000FF;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .wrapper .form {
+      width: 100%;
+    }
+
+    .wrapper .form .inputfield {
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+    }
+
+    .wrapper .form .inputfield label {
+      width: 200px;
+      color: #000000;
+      margin-right: 10px;
+      font-size: 14px;
+    }
+
+    .wrapper .form .inputfield .input,
+    .wrapper .form .inputfield .textarea {
+      width: 100%;
+      outline: none;
+      border: 1px solid #d5dbd9;
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    .wrapper .form .inputfield .textarea {
+      width: 100%;
+      height: 125px;
+      resize: none;
+    }
+
+    .wrapper .form .inputfield .custom_select {
+      position: relative;
+      width: 100%;
+      height: 37px;
+    }
+
+    .wrapper .form .inputfield .custom_select:before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      right: 10px;
+      border: 8px solid;
+      border-color: #d5dbd9 transparent transparent transparent;
+      pointer-events: none;
+    }
+
+    .wrapper .form .inputfield .custom_select select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      outline: none;
+      width: 100%;
+      height: 100%;
+      border: 0px;
+      padding: 8px 10px;
+      font-size: 15px;
+      border: 1px solid #d5dbd9;
+      border-radius: 3px;
+    }
+
+
+    .wrapper .form .inputfield .input:focus,
+    .wrapper .form .inputfield .textarea:focus,
+    .wrapper .form .inputfield .custom_select select:focus {
+      border: 1px solid #fec107;
+    }
+
+    .wrapper .form .inputfield {
+      width: 100%;
+      font-size: 14px;
+      color: #757575;
+    }
+
+    .wrapper .form .inputfield .check {
+      width: 15px;
+      height: 15px;
+      position: relative;
+      display: block;
+      cursor: pointer;
+    }
+
+    .wrapper .form .inputfield .check input[type="checkbox"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+    }
+
+    .wrapper .form .inputfield .check .checkmark {
+      width: 15px;
+      height: 15px;
+      border: 1px solid #fec107;
+      display: block;
+      position: relative;
+    }
+
+    .wrapper .form .inputfield .check .checkmark:before {
+      content: "";
+      position: absolute;
+      top: 1px;
+      left: 2px;
+      width: 5px;
+      height: 2px;
+      border: 2px solid;
+      border-color: transparent transparent #fff #fff;
+      transform: rotate(-45deg);
+      display: none;
+    }
+
+    .wrapper .form .inputfield .btn {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 15px;
+      border: 0px;
+      background: green;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 3px;
+      outline: none;
+    }
+
+    .wrapper .form .inputfield .btn:hover {
+      background: blue;
+    }
+
+    .wrapper .form .inputfield2 .btn {
+      padding: 8px 10px;
+      font-size: 15px;
+      border: 0px;
+      background: blue;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 5px;
+      outline: none;
+      margin-left: 2px;
+    }
+
+    .wrapper .form .inputfield2 .btn:hover {
+      background: green;
+    }
+
+    .wrapper .form .inputfield:last-child {
+      margin-bottom: 0;
+    }
+
+    html {
+      font-size: 62.5%;
+      overflow-x: hidden;
+      scroll-padding-top: 6rem;
+      scroll-behavior: smooth;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      background: green;
+      color: #fff;
+      padding: .8rem 3rem;
+      border: .2rem solid var(--orange);
+      cursor: pointer;
+      font-size: 1.7rem;
+    }
+
+    .btn:hover {
+      background: navy;
+      color: #fff;
+    }
+
+    #menu-bar {
+      border: .1rem solid #fff;
+      border-radius: .5rem;
+      font-size: 3rem;
+    }
+
+    .modal .modal-dialog {
+      width: 700px;
+    }
+
+    .modal .modal-header,
+    .modal .modal-body,
+    .modal .modal-footer {
+      padding: 5px 5px;
+    }
+
+    #modal .modal-content {
+      border-radius: 1px;
+    }
+
+    .modal .modal-title {
+      display: inline-block;
+    }
+
+    .modal textarea.form-control {
+      resize: vertical;
+    }
+
+    .modal .btn {
+      border-radius: 1px;
+      min-width: 100px;
+    }
+
+    .modal form label {
+      font-weight: bold;
+    }
+
+    @media (max-width:1200px) {
+
+      html {
+        font-size: 55%;
+      }
+    }
+
+    @media (max-width:991px) {
+      section {
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width:450px) {
+      html {
+        font-size: 50%;
+      }
+    }
+
+    @media (max-width:420px) {
+      .wrapper .form .inputfield {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .wrapper .form .inputfield label {
+        margin-bottom: 5px;
+      }
+
+      .wrapper .form .inputfield.terms {
+        flex-direction: row;
+      }
+    }
+
+    #loader {
+      border: 16px solid #0000CD;
+      border-radius: 50%;
+      border-top: 16px solid #FFFF00;
+      border-bottom: 16px solid #00BFFF;
+      width: 30px;
+      height: 30px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+      visibility: hidden;
+    }
+
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script>
+
+    var script_url = "https://script.google.com/macros/s/AKfycbzKvCFKY4G4NNY1ZQqbodtzcspFBibk2VX-S5jsNtQELEMUJJy3qgDhcj7HXvNpfYTOEg/exec";/////////////////
+
+
+    // tambah data
+    function insert_value() {
+
+      $("#re").css("visibility", "hidden");
+      document.getElementById("loader").style.visibility = "visible";
+      $('#mySpinner').addClass('spinner');
+
+      var id1 = $("#id").val();
+      var bdf = $("#bdf").val();
+      var penerangan = $("#penerangan").val();
+      var upsAmp = $("#upsAmp").val();
+      var upsVin = $("#upsVin").val();
+      var upsVout = $("#upsVout").val();
+      var upsFreq = $("#upsFreq").val();
+      var upsLoad = $("#upsLoad").val();
+      var stopK = $("#stopK").val();
+      var temp = $("#temp").val();
+      var hum = $("#hum").val();
+      var totalUsage = $("#totalUsage").val();
+      var ac1 = $("#ac1").val();
+      var ac2 = $("#ac2").val();
+      var backup = $("#backup").val();
+      var signature = $("#signature").val();//////////////////
+
+      var url = script_url + "?callback=ctrlq&signature=" + signature + "&backup=" + backup + "&ac2=" + ac2 + "&ac1=" + ac1 + "&totalUsage=" + totalUsage + "&hum=" + hum + "&temp=" + temp + "&stopK=" + stopK + "&upsLoad=" + upsLoad + "&upsFreq=" + upsFreq + "&upsVout=" + upsVout + "&upsVin=" + upsVin + "&upsAmp=" + upsAmp + "&penerangan=" + penerangan + "&bdf=" + bdf + "&id=" + id1 + "&action=insert";
+
+      var request = jQuery.ajax({
+        crossDomain: true,
+        url: url,
+        method: "GET",
+        dataType: "jsonp"
+      });
+    }
+
+    // perbaharui data
+    function update_value() {
+      $("#re").css("visibility", "hidden");
+      document.getElementById("loader").style.visibility = "visible";
+
+      var id1 = $("#id").val();
+      var bdf = $("#bdf").val();
+      var penerangan = $("#penerangan").val();
+      var upsAmp = $("#upsAmp").val();
+      var upsVin = $("#upsVin").val();
+      var upsVout = $("#upsVout").val();
+      var upsFreq = $("#upsFreq").val();
+      var upsLoad = $("#upsLoad").val();
+      var stopK = $("#stopK").val();
+      var temp = $("#temp").val();
+      var hum = $("#hum").val();
+      var totalUsage = $("#totalUsage").val();
+      var ac1 = $("#ac1").val();
+      var ac2 = $("#ac2").val();
+      var backup = $("#backup").val();
+      var signature = $("#signature").val();//////////////////
+
+      var url = script_url + "?callback=ctrlq&signature=" + signature + "&backup=" + backup + "&ac2=" + ac2 + "&ac1=" + ac1 + "&totalUsage=" + totalUsage + "&hum=" + hum + "&temp=" + temp + "&stopK=" + stopK + "&upsLoad=" + upsLoad + "&upsFreq=" + upsFreq + "&upsVout=" + upsVout + "&upsVin=" + upsVin + "&upsAmp=" + upsAmp + "&penerangan=" + penerangan + "&bdf=" + bdf + "&id=" + id1 + "&action=insert";
+
+      var request = jQuery.ajax({
+        crossDomain: true,
+        url: url,
+        method: "GET",
+        dataType: "jsonp"
+      });
+    }
+
+    //hapus data
+    function delete_value() {
+      $("#re").css("visibility", "hidden");
+      document.getElementById("loader").style.visibility = "visible";
+
+      $('#mySpinner').addClass('spinner');
+      var id1 = $("#id").val();
+      var bdf = $("#bdf").val();
+      var penerangan = $("#penerangan").val();
+      var upsAmp = $("#upsAmp").val();
+      var upsVin = $("#upsVin").val();
+      var upsVout = $("#upsVout").val();
+      var upsFreq = $("#upsFreq").val();
+      var upsLoad = $("#upsLoad").val();
+      var stopK = $("#stopK").val();
+      var temp = $("#temp").val();
+      var hum = $("#hum").val();
+      var totalUsage = $("#totalUsage").val();
+      var ac1 = $("#ac1").val();
+      var ac2 = $("#ac2").val();
+      var backup = $("#backup").val();
+      var signature = $("#signature").val();//////////////////
+
+      var url = script_url + "?callback=ctrlq&signature=" + signature + "&backup=" + backup + "&ac2=" + ac2 + "&ac1=" + ac1 + "&totalUsage=" + totalUsage + "&hum=" + hum + "&temp=" + temp + "&stopK=" + stopK + "&upsLoad=" + upsLoad + "&upsFreq=" + upsFreq + "&upsVout=" + upsVout + "&upsVin=" + upsVin + "&upsAmp=" + upsAmp + "&penerangan=" + penerangan + "&bdf=" + bdf + "&id=" + id1 + "&action=insert";
+
+      var request = jQuery.ajax({
+        crossDomain: true,
+        url: url,
+        method: "GET",
+        dataType: "jsonp"
+      });
+    }
+
+    // print the returned data
+    function ctrlq(e) {
+      $("#re").html(e.result);
+      $("#re").css("visibility", "visible");
+      read_value('');
+    }
+
+    function read_value(srch) {
+
+      $("#re").css("visibility", "hidden");
+      document.getElementById("loader").style.visibility = "visible";
+      var url = script_url + "?action=read";
+
+      $.getJSON(url, function (json) {
+
+        // buat tabel yang menampilkan data
+        var table = document.createElement("table");
+        table.setAttribute("id", "myTable");
+        var header = table.createTHead();
+        var row = header.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        var cell6 = row.insertCell(5);
+        var cell7 = row.insertCell(6);
+        var cell8 = row.insertCell(7);
+        var cell9 = row.insertCell(8);
+        var cell10 = row.insertCell(9);
+        var cell11 = row.insertCell(10);
+        var cell12 = row.insertCell(11);
+        var cell13 = row.insertCell(12);
+        var cell14 = row.insertCell(13);
+        var cell15 = row.insertCell(14);
+        var cell16 = row.insertCell(15);///////////////////
+        row.style.background = "rgb(15,0,0)";
+
+        cell1.innerHTML = "<b>ID</b>";
+        cell2.innerHTML = "<b>bdf</b>";
+        cell3.innerHTML = "<b>penerangan</b>";
+        cell4.innerHTML = "<b>upsAmp</b>";
+        cell5.innerHTML = "<b>upsVin</b>";
+        cell6.innerHTML = "<b>upsVout</b>";
+        cell7.innerHTML = "<b>upsFreq</b>";
+        cell8.innerHTML = "<b>upsLoad</b>";
+        cell9.innerHTML = "<b>stopK</b>";
+        cell10.innerHTML = "<b>temp</b>";
+        cell11.innerHTML = "<b>hum</b>";
+        cell12.innerHTML = "<b>totalUsage</b>";
+        cell13.innerHTML = "<b>ac1</b>";
+        cell14.innerHTML = "<b>ac2</b>";
+        cell15.innerHTML = "<b>backup</b>";
+        cell16.innerHTML = "<b>signature</b>";//////////////////
+
+        //        alert(json.records);
+        // masukkan data ke dalam tabel
+        if (srch != '') {
+          for (var i = 0; i < json.records.length; i++) {
+
+            if (srch == json.records[i].ID) {
+              tr = table.insertRow(-1);
+              var tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].ID;
+              tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].bdf;
+              tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].penerangan;
+              tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].upsAmp;
+              tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].upsVin;
+              tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].upsVout;
+              tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].upsFreq;
+              tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].upsLoad;
+              tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].stopK;
+              tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].temp;
+              tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].hum;
+              tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].totalUsage;
+              tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].ac1;
+              tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].ac2;
+              tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].backup;
+              tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = json.records[i].signature; //////////////////
+            }
+          }
+          $("#re").html("Informasi cheklist bdf");
+          $("#re").css("visibility", "visible");
+        } else {
+          for (var i = 0; i < json.records.length; i++) {
+
+            tr = table.insertRow(-1);
+            var tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].ID;
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].bdf;
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].penerangan;
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].upsAmp;
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].upsVin;
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].upsVout;
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].upsFreq;
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].upsLoad;
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].stopK;
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].temp;
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].hum;
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].totalUsage;
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].ac1;
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].ac2;
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].backup;
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i].signature; //////////////////
+          }
+        }
+
+        var divContainer = document.getElementById("showData");
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+        document.getElementById("loader").style.visibility = "hidden";
+        $("#re").css("visibility", "visible");
+
+        $("#id").val("")
+        $("#bdf").val("")
+        $("#penerangan").val("")
+        $("#upsAmp").val("")
+        $("#upsVin").val("")
+        $("#upsVout").val("")
+        $("#upsFreq").val("")
+        $("#upsLoad").val("")
+        $("#stopK").val("")
+        $("#temp").val("")
+        $("#hum").val("")
+        $("#totalUsage").val("")
+        $("#ac1").val("")
+        $("#ac2").val("")
+        $("#backup").val("")
+        $("#signature").val("")
+        getData2Input();///////////////////
+      });
+    }
+    //////////// Ketika data dalam tabel diklik
+    function getData2Input() {
+      var table = document.getElementById("myTable");
+
+      if (table) {
+        for (var i = 0; i < table.rows.length; i++) {
+          table.rows[i].onclick = function () {
+            tableText(this);
+          }
+        }
+      }
+    }
+
+    ///////////////////Ekstrak data dari Spreadsheet dan tampilkan di kolom.
+
+    function tableText(tableRow) {
+      var id = tableRow.childNodes[0].innerHTML;
+      var bdf = tableRow.childNodes[1].innerHTML;
+      var penerangan = tableRow.childNodes[2].innerHTML;
+      var upsAmp = tableRow.childNodes[3].innerHTML;
+      var upsVin = tableRow.childNodes[4].innerHTML;
+      var upsVout = tableRow.childNodes[5].innerHTML;
+      var upsFreq = tableRow.childNodes[6].innerHTML;
+      var upsLoad = tableRow.childNodes[7].innerHTML;
+      var stopK = tableRow.childNodes[8].innerHTML;
+      var temp = tableRow.childNodes[9].innerHTML;
+      var hum = tableRow.childNodes[10].innerHTML;
+      var totalUsage = tableRow.childNodes[11].innerHTML;
+      var ac1 = tableRow.childNodes[12].innerHTML;
+      var ac2 = tableRow.childNodes[13].innerHTML;
+      var backup = tableRow.childNodes[14].innerHTML;
+      var signature = tableRow.childNodes[15].innerHTML;//////////
+      $("#id").val(id)
+      $("#bdf").val(bdf)
+      $("#penerangan").val(penerangan)
+      $("#upsAmp").val(upsAmp)
+      $("#upsVin").val(upsVin)
+      $("#upsVout").val(upsVout)
+      $("#upsFreq").val(upsFreq)
+      $("#upsLoad").val(upsLoad)
+      $("#stopK").val(stopK)
+      $("#temp").val(temp)
+      $("#hum").val(hum)
+      $("#totalUsage").val(totalUsage)
+      $("#ac1").val(ac1)
+      $("#ac2").val(ac2)
+      $("#backup").val(backup)
+      $("#signature").val(signature)
+
+    }   
+  </script>
+
+  </head>
+
+  <body>
+
+    <!-- Buat Formulir -->
+    <div class="wrapper">
+      <div class="title">
+        <p>CHECKLIST BDF</p>
+        <a href="#mrphekeModal1" class="btn btn-primary" style="font-size: 13px;width: 150px;float: left;" data-toggle="modal"><i class="material-icons"></i>Spreadsheet</a>
+      </div>
+      <div class="form">
+        <!-- <div class="inputfield">
+          <label></label>
+          <input type="number" name="srchID" id="srchID" placeholder="Search by ID" style="text-align: center;"> &nbsp; <input type="button" style="font-size:12pt;color:white;background-color:#5F9EA0;border:1px solid #000000;padding:2px" onclick="read_value($('#srchID').val())" value="Search" />
+        </div> -->
+        <div class="inputfield">
+          <label>ID</label>
+          <input type="number" name="id" id="id" class="input" placeholder="Input ID">
+        </div>
+        <div class="inputfield">
+          <label>BDF</label>
+          <select type="text" name="bdf" id="bdf" class="input">
+            <option>---BDF---</option>
+            <option>BIP</option>
+            <option>Cempaka Mas</option>
+            <option>Casablangka</option>
+            <option>Ejip</option>
+            <option>Gajah Mada</option>
+            <option>Gardenia Apt</option>
+            <option>German Center</option>
+            <option>GKBI</option>
+            <option>Graha Niaga</option>
+            <option>Hamton</option>
+            <option>Holland Village</option>
+            <option>Kamala Lagon</option>
+            <option>Kemang Village</option>
+            <option>Kensington Apt</option>
+            <option>Kingland Apt</option>
+            <option>Lippo Kuningan</option>
+            <option>Lippo Pluit</option>
+            <option>Manggala</option>
+            <option>Marunda</option>
+            <option>Meikarta</option>
+            <option>Menara Imperium</option>
+            <option>MH Mansion</option>
+            <option>M Town Apt</option>
+            <option>Orange Country</option>
+            <option>Plaza Index</option>
+            <option>Puri Casablangka</option>
+            <option>Rolling Hils</option>
+            <option>Sonatopas</option>
+            <option>Spring Lake</option>
+            <option>ST Morist</option>
+            <option>Taman Anggrek Apt</option>
+            <option>Taman Ria Mall</option>
+            <option>Thamrin</option>
+            <option>Thamrin Residence</option>
+            <option>Titan Bintaro</option>
+            <option>U Residence</option>
+          </select>
+        </div>
+        <div class="inputfield">
+          <label>Penerangan</label>
+          <input type="text" name="penerangan" id="penerangan" class="input" placeholder="ampere lamp"></input>
+        </div>
+        <div class="inputfield">
+          <label>UPS (I)</label>
+          <input type="text" name="upsAmp" id="upsAmp" class="input" placeholder="ups ampere"></input>
+        </div>
+        <div class="inputfield">
+          <label>UPS (Vin)</label>
+          <input type="text" name="upsVin" id="upsVin" class="input" placeholder="ups V in"></input>
+        </div>
+        <div class="inputfield">
+          <label>UPS (Vout)</label>
+          <input type="text" name="upsVout" id="upsVout" class="input" placeholder="ups V out"></input>
+        </div>
+        <div class="inputfield">
+          <label>UPS (Hz)</label>
+          <input type="text" name="upsFreq" id="upsFreq" class="input" placeholder="ups hz"></input>
+        </div>
+        <div class="inputfield">
+          <label>UPS Load (%)</label>
+          <input type="text" name="upsLoad" id="upsLoad" class="input" placeholder="ups %"></input>
+        </div>
+        <div class="inputfield">
+          <label>Stop Kontak</label>
+          <input type="text" name="stopK" id="stopK" class="input" placeholder="ampere sto"></input>
+        </div>
+        <div class="inputfield">
+          <label>Temperature</label>
+          <input type="text" name="temp" id="temp" class="input" placeholder="c"></input>
+        </div>
+        <div class="inputfield">
+          <label>Humidity</label>
+          <input type="text" name="hum" id="hum" class="input" placeholder="%"></input>
+        </div>
+        <div class="inputfield">
+          <label>Total Usage Power</label>
+          <input type="text" name="totalUsage" id="totalUsage" class="input" placeholder="ampere total"></input>
+        </div>
+        <div class="inputfield">
+          <label>AC 1</label>
+          <input type="text" name="ac1" id="ac1" class="input" placeholder="ampere ac1"></input>
+        </div>
+        <div class="inputfield">
+          <label>AC 2</label>
+          <input type="text" name="ac2" id="ac2" class="input" placeholder="ampere ac2"></input>
+        </div>
+        <div class="inputfield">
+          <label>Backup Genset</label>
+          <select type="text" name="backup" id="backup" class="input">
+            <option>---Backup Genset---</option>
+            <option>YES</option>
+            <option>NO</option>
+          </select>
+        </div>
+        <div class="inputfield">
+          <label>Signature</label>
+          <input type="text" name="signature" id="signature" class="input"
+            placeholder="Input signature lengkap"></input>
+        </div>
+        <div align="center">
+          <input type="button"
+            style="width: 100px;font-size:10pt;font-weight: bold;color:greenyellow;background-color:#fff;border:1px solid greenyellow;padding:2px"
+            id="b1" onClick="insert_value()" value="Simpan Data">
+          <!-- <input type="button"
+            style="width: 100px;font-size:10pt;font-weight: bold;color:#DAA520;background-color:#fff;border:1px solid #DAA520;padding:2px"
+            onclick="read_value('')" value="READ">
+          <input type="button"
+            style="width: 100px;font-size:10pt;font-weight: bold;color:#0000CD;background-color:#fff;border:1px solid #0000CD;padding:2px"
+            onclick="update_value()" value="UPDATE">
+          <input type="button"
+            style="width: 100px;font-size:10pt;font-weight: bold;color:#B22222;background-color:#fff;border:1px solid #B22222;padding:2px"
+            onclick="delete_value()" value="DELETE"> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Memanggil loader-->
+    <div id="loader"></div>
+    <p id="re"></p>
+    <div id="showData" style="color: #ffffff;font-weight: bold;"></div>
+
+    <div id="mrphekeModal1" class="modal fade">
+      <form name="google-sheet">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="btn btn-primary" data-dismiss="modal"
+                style="font-size:10pt;font-weight: bold;color:white;background-color:#B22222;border:1px solid #000000;padding:2px;float: left;">CLOSE</button>
+              <iframe
+                src="https://docs.google.com/spreadsheets/d/1xIx9vSu-HIsUrGpkoEw0O09NfFextkhk6r9zLsPvgv0/edit#gid=0"
+                style="width: 100%;height: 450px;"></iframe>
+      </form>
+    </div>
+    </div>
+    </div>
+    </header>
+    </section>
+  </body>
+
+</html>
